@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Shop</title>
+<meta name="description" content="A clean, minimalist online shop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   QUICK CUSTOMIZATION GUIDE
+   1. Change SHOP_NAME, SHOP_EMAIL and colors below.
+   2. Edit the PRODUCTS array further down (search "PRODUCTS =").
+   3. Replace image URLs with your own product photos.
+   4. Optional: set a "buy" link per product (Stripe Payment Link,
+      PayPal.me, Gumroad, etc.) for instant one-click checkout.
+   ============================================================ */
+:root{
+  --ink:#1a1a1a; --bg:#ffffff; --muted:#6b6b6b; --line:#e8e6e2;
+  --panel:#faf9f7; --accent:#1a1a1a; --accent-fg:#ffffff;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:0;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+/* header */
+header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);z-index:50;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1180px;margin:0 auto;}
+.brand{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:.02em;text-decoration:none;}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
+.nav-links a{text-decoration:none;opacity:.75;transition:opacity .15s;}
+.nav-links a:hover{opacity:1;}
+.nav-right{display:flex;align-items:center;gap:18px;}
+#cartBtn{position:relative;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--ink);padding:4px;}
+#cartCount{position:absolute;top:-6px;right:-8px;background:var(--accent);color:var(--accent-fg);
+  font-size:.65rem;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;}
+.menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;}
+
+/* hero */
+.hero{padding:90px 24px 70px;text-align:center;}
+.hero .eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.15;max-width:720px;margin:0 auto 18px;}
+.hero p{color:var(--muted);max-width:480px;margin:0 auto 30px;font-size:1rem;line-height:1.6;}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-fg);text-decoration:none;
+  padding:13px 30px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;
+  border-radius:2px;transition:opacity .15s;}
+.btn:hover{opacity:.85;}
+.btn.outline{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+
+/* filters */
+.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 24px 40px;}
+.filter-chip{border:1px solid var(--line);background:#fff;padding:8px 18px;border-radius:20px;
+  font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;color:var(--muted);}
+.filter-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* product grid */
+.shop{padding:10px 24px 90px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:36px 26px;max-width:1180px;margin:0 auto;}
+.card{position:relative;}
+.card .imgwrap{aspect-ratio:1/1;overflow:hidden;background:var(--panel);margin-bottom:16px;}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+.card:hover img{transform:scale(1.04);}
+.card h3{font-size:1rem;font-family:'Jost',sans-serif;font-weight:500;margin-bottom:4px;}
+.card .price{color:var(--muted);font-size:.92rem;margin-bottom:12px;}
+.card .actions{display:flex;gap:8px;}
+.card button.add{flex:1;background:var(--ink);color:#fff;border:none;padding:10px;font-size:.72rem;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;}
+.card a.buy{flex:1;text-align:center;padding:10px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  border:1px solid var(--line);text-decoration:none;color:var(--ink);border-radius:2px;}
+
+/* about / footer */
+.about{background:var(--panel);padding:80px 24px;text-align:center;}
+.about h2{font-size:1.8rem;margin-bottom:16px;}
+.about p{max-width:560px;margin:0 auto;color:var(--muted);line-height:1.7;}
+footer{padding:60px 24px 40px;border-top:1px solid var(--line);}
+.foot-grid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;max-width:1180px;margin:0 auto 40px;}
+.foot-col h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;color:var(--muted);}
+.foot-col a{display:block;text-decoration:none;font-size:.9rem;margin-bottom:8px;opacity:.8;}
+.foot-bottom{text-align:center;font-size:.78rem;color:var(--muted);}
+
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90;}
+.overlay.open{opacity:1;pointer-events:auto;}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;z-index:95;
+  transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;}
+.drawer.open{transform:translateX(0);}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line);}
+.drawer-head h3{font-family:'Jost';font-size:1rem;text-transform:uppercase;letter-spacing:.08em;}
+.drawer-close{background:none;border:none;font-size:1.3rem;cursor:pointer;}
+#cartItems{flex:1;overflow-y:auto;padding:10px 24px;}
+.cart-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);}
+.cart-item img{width:64px;height:64px;object-fit:cover;background:var(--panel);}
+.cart-item .info{flex:1;}
+.cart-item .info .name{font-size:.9rem;margin-bottom:4px;}
+.cart-item .info .price{font-size:.82rem;color:var(--muted);}
+.qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
+.qty button{width:22px;height:22px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.8rem;}
+.remove-item{background:none;border:none;color:var(--muted);font-size:.75rem;text-decoration:underline;cursor:pointer;margin-top:6px;}
+.drawer-foot{padding:20px 24px 28px;border-top:1px solid var(--line);}
+.subtotal{display:flex;justify-content:space-between;font-size:.95rem;margin-bottom:16px;}
+.empty-cart{color:var(--muted);font-size:.88rem;padding:40px 0;text-align:center;}
+
+@media (max-width:760px){
+  .nav-links{position:fixed;top:64px;left:0;right:0;background:#fff;flex-direction:column;gap:0;
+    border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .25s;padding:10px 24px;}
+  .nav-links.open{transform:translateY(0);}
+  .nav-links a{display:block;padding:14px 0;border-bottom:1px solid var(--line);}
+  .menu-toggle{display:block;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand" id="brandName">Your Shop</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <button id="cartBtn" aria-label="Open cart">🛍️<span id="cartCount">0</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="eyebrow">New arrivals every week</div>
+  <h1>Simple, honest goods — made to last.</h1>
+  <p>A small, carefully curated shop. Every piece picked (or made) by hand.</p>
+  <a href="#shop" class="btn">Shop the collection</a>
+</section>
+
+<div class="filters" id="filters"></div>
+
+<section class="shop" id="shop">
+  <div class="grid" id="productGrid"></div>
+</section>
+
+<section class="about" id="about">
+  <h2>Our story</h2>
+  <p>Tell your customers who you are, what you make, and why it matters. A couple of honest sentences goes a long way — replace this with your own story.</p>
+</section>
+
+<footer id="contact">
+  <div class="foot-grid">
+    <div class="foot-col">
+      <h4>Shop</h4>
+      <a href="#shop">All products</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="foot-col">
+      <h4>Support</h4>
+      <a href="mailto:you@example.com">Email us</a>
+      <a href="#">Shipping &amp; returns</a>
+    </div>
+    <div class="foot-col">
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">TikTok</a>
+    </div>
+  </div>
+  <div class="foot-bottom">© <span id="year"></span> Your Shop. All rights reserved.</div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<div class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Your Cart</h3>
+    <button class="drawer-close" id="drawerClose">✕</button>
+  </div>
+  <div id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="subtotal"><span>Subtotal</span><span id="subtotalAmt">$0.00</span></div>
+    <button class="btn" style="width:100%;" id="checkoutBtn">Checkout</button>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:10px;">
+      Checkout sends your order to us by email — we'll follow up with a payment link.
+      Prefer instant card checkout? Use the "Buy now" link on any product that has one.
+    </p>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   1) SHOP SETTINGS — edit these
+   ============================================================ */
+const SHOP_NAME  = "Your Shop";
+const SHOP_EMAIL = "you@example.com"; // orders are emailed here via mailto:
+
+/* ============================================================
+   2) PRODUCTS — add, remove, or edit freely.
+      "buy" is optional: paste a Stripe Payment Link, PayPal.me
+      link, or Gumroad link there for instant one-click checkout
+      on that item. Leave it out (or "") to skip that button.
+   ============================================================ */
+const PRODUCTS = [
+  { id:1, name:"Ceramic Mug",      price:24, category:"Home",  img:"https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=80", buy:"" },
+  { id:2, name:"Linen Tote Bag",   price:38, category:"Bags",  img:"https://images.unsplash.com/photo-1592878849122-facb97520f9e?w=600&q=80", buy:"" },
+  { id:3, name:"Oak Candle",       price:19, category:"Home",  img:"https://images.unsplash.com/photo-1602874801007-bd36c0a1e4d4?w=600&q=80", buy:"" },
+  { id:4, name:"Wool Scarf",       price:45, category:"Apparel", img:"https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=600&q=80", buy:"" },
+  { id:5, name:"Leather Notebook", price:28, category:"Paper", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80", buy:"" },
+  { id:6, name:"Woven Basket",     price:32, category:"Home",  img:"https://images.unsplash.com/photo-1523419409543-a5e549c1faa8?w=600&q=80", buy:"" }
+];
+
+/* ============================================================
+   Everything below this line is functional code —
+   you shouldn't need to touch it.
+   ============================================================ */
+document.getElementById('brandName').textContent = SHOP_NAME;
+document.title = SHOP_NAME;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const fmt = n => '$' + n.toFixed(2);
+const grid = document.getElementById('productGrid');
+const filtersEl = document.getElementById('filters');
+
+const categories = ['All', ...new Set(PRODUCTS.map(p=>p.category))];
+categories.forEach(cat=>{
+  const b=document.createElement('button');
+  b.className='filter-chip'+(cat==='All'?' active':'');
+  b.textContent=cat;
+  b.onclick=()=>{
+    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+    b.classList.add('active');
+    renderProducts(cat);
+  };
+  filtersEl.appendChild(b);
+});
+
+function renderProducts(filter){
+  grid.innerHTML='';
+  PRODUCTS.filter(p=>!filter||filter==='All'||p.category===filter).forEach(p=>{
+    const card=document.createElement('div'); card.className='card';
+    card.innerHTML=`
+      <div class="imgwrap"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <h3>${p.name}</h3>
+      <div class="price">${fmt(p.price)}</div>
+      <div class="actions">
+        <button class="add" data-id="${p.id}">Add to cart</button>
+        ${p.buy ? `<a class="buy" href="${p.buy}" target="_blank" rel="noopener">Buy now</a>` : ''}
+      </div>`;
+    card.querySelector('.add').onclick=()=>addToCart(p.id);
+    grid.appendChild(card);
+  });
+}
+renderProducts('All');
+
+/* ---------------- cart ---------------- */
+let cart = JSON.parse(localStorage.getItem('shop_cart')||'{}');
+function saveCart(){ localStorage.setItem('shop_cart', JSON.stringify(cart)); renderCart(); }
+function addToCart(id){ cart[id]=(cart[id]||0)+1; saveCart(); openCart(); }
+function changeQty(id,delta){
+  cart[id]=(cart[id]||0)+delta;
+  if(cart[id]<=0) delete cart[id];
+  saveCart();
+}
+function removeItem(id){ delete cart[id]; saveCart(); }
+
+function renderCart(){
+  const itemsEl=document.getElementById('cartItems');
+  const ids=Object.keys(cart);
+  document.getElementById('cartCount').textContent = ids.reduce((s,id)=>s+cart[id],0);
+  if(ids.length===0){
+    itemsEl.innerHTML='<div class="empty-cart">Your cart is empty</div>';
+    document.getElementById('subtotalAmt').textContent=fmt(0);
+    return;
+  }
+  let subtotal=0;
+  itemsEl.innerHTML='';
+  ids.forEach(id=>{
+    const p=PRODUCTS.find(x=>x.id==id); if(!p) return;
+    const qty=cart[id]; subtotal+=p.price*qty;
+    const row=document.createElement('div'); row.className='cart-item';
+    row.innerHTML=`
+      <img src="${p.img}" alt="${p.name}">
+      <div class="info">
+        <div class="name">${p.name}</div>
+        <div class="price">${fmt(p.price)}</div>
+        <div class="qty">
+          <button data-a="dec">−</button><span>${qty}</span><button data-a="inc">+</button>
+        </div>
+        <button class="remove-item">Remove</button>
+      </div>`;
+    row.querySelector('[data-a="dec"]').onclick=()=>changeQty(id,-1);
+    row.querySelector('[data-a="inc"]').onclick=()=>changeQty(id,1);
+    row.querySelector('.remove-item').onclick=()=>removeItem(id);
+    itemsEl.appendChild(row);
+  });
+  document.getElementById('subtotalAmt').textContent=fmt(subtotal);
+}
+renderCart();
+
+const overlay=document.getElementById('overlay'), drawer=document.getElementById('cartDrawer');
+function openCart(){ overlay.classList.add('open'); drawer.classList.add('open'); }
+function closeCart(){ overlay.classList.remove('open'); drawer.classList.remove('open'); }
+document.getElementById('cartBtn').onclick=openCart;
+document.getElementById('drawerClose').onclick=closeCart;
+overlay.onclick=closeCart;
+
+document.getElementById('checkoutBtn').onclick=()=>{
+  const ids=Object.keys(cart);
+  if(ids.length===0) return;
+  let lines=[], subtotal=0;
+  ids.forEach(id=>{
+    const p=PRODUCTS.find(x=>x.id==id); if(!p) return;
+    const qty=cart[id]; subtotal+=p.price*qty;
+    lines.push(`${qty} x ${p.name} — ${fmt(p.price)} each`);
+  });
+  const body=encodeURIComponent(
+    `Hi ${SHOP_NAME},\n\nI'd like to order:\n\n${lines.join('\n')}\n\nSubtotal: ${fmt(subtotal)}\n\nMy shipping address:\n`
+  );
+  window.location.href = `mailto:${SHOP_EMAIL}?subject=${encodeURIComponent('New order from '+SHOP_NAME)}&body=${body}`;
+};
+
+/* mobile menu */
+const menuToggle=document.getElementById('menuToggle'), navLinks=document.getElementById('navLinks');
+menuToggle.onclick=()=>navLinks.classList.toggle('open');
+navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+</script>
+</body>
+</html>
