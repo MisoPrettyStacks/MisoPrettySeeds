@@ -3,329 +3,389 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MisoPretty Seeds</title>
-<meta name="description" content="A clean, minimalist online shop.">
+<title>MisoPretty Seeds — Heirloom seeds, pretty packets</title>
+<meta name="description" content="Small-batch flower seeds, packed with love in California. Heirloom seeds, pretty packets. Order via DM on X.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   QUICK CUSTOMIZATION GUIDE
-   1. Change SHOP_NAME, SHOP_EMAIL and colors below.
-   2. Edit the PRODUCTS array further down (search "PRODUCTS =").
-   3. Replace image URLs with your own product photos.
-   4. Optional: set a "buy" link per product (Stripe Payment Link,
-      PayPal.me, Gumroad, etc.) for instant one-click checkout.
-   ============================================================ */
-:root{
-  --ink:#1a1a1a; --bg:#ffffff; --muted:#6b6b6b; --line:#e8e6e2;
-  --panel:#faf9f7; --accent:#1a1a1a; --accent-fg:#ffffff;
-}
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,-apple-system,sans-serif;
-  -webkit-font-smoothing:antialiased;}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:600;margin:0;}
-a{color:inherit;}
-img{max-width:100%;display:block;}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  :root{
+    --white:#ffffff;
+    --ink:#333333;
+    --soft:#6f6f6f;
+    --green:#7a8b5c;
+    --green-dark:#67784d;
+    --rose:#c08a94;
+    --rose-soft:#f9eff1;
+    --line:#ececec;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Jost',system-ui,-apple-system,sans-serif;
+    font-weight:300;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.2}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
 
-/* header */
-header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--line);z-index:50;}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1180px;margin:0 auto;}
-.brand{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:.02em;text-decoration:none;}
-.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;}
-.nav-links a{text-decoration:none;opacity:.75;transition:opacity .15s;}
-.nav-links a:hover{opacity:1;}
-.nav-right{display:flex;align-items:center;gap:18px;}
-#cartBtn{position:relative;background:none;border:none;cursor:pointer;font-size:1.15rem;color:var(--ink);padding:4px;}
-#cartCount{position:absolute;top:-6px;right:-8px;background:var(--accent);color:var(--accent-fg);
-  font-size:.65rem;border-radius:50%;width:17px;height:17px;display:flex;align-items:center;justify-content:center;}
-.menu-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;}
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.96);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(6px);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
+  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;letter-spacing:.06em;text-decoration:none}
+  .logo em{color:var(--green);font-style:normal}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{text-decoration:none;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .btn{
+    display:inline-block;text-decoration:none;cursor:pointer;border:none;
+    background:var(--green);color:#fff;
+    font-family:'Jost',sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:14px 34px;border-radius:999px;transition:background .25s,transform .15s;
+  }
+  .btn:hover{background:var(--green-dark);transform:translateY(-1px)}
+  .btn.rose{background:var(--rose)}
+  .btn.rose:hover{background:#a97782}
+  .btn.small{padding:11px 26px;font-size:.78rem}
+  @media(max-width:720px){.nav-links a:not(.btn){display:none}}
 
-/* hero */
-.hero{padding:90px 24px 70px;text-align:center;}
-.hero .eyebrow{font-size:.75rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
-.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);line-height:1.15;max-width:720px;margin:0 auto 18px;}
-.hero p{color:var(--muted);max-width:480px;margin:0 auto 30px;font-size:1rem;line-height:1.6;}
-.btn{display:inline-block;background:var(--accent);color:var(--accent-fg);text-decoration:none;
-  padding:13px 30px;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;border:none;cursor:pointer;
-  border-radius:2px;transition:opacity .15s;}
-.btn:hover{opacity:.85;}
-.btn.outline{background:transparent;color:var(--ink);border:1px solid var(--ink);}
+  /* ---------- hero ---------- */
+  .hero{padding:90px 0 70px;text-align:center}
+  .hero .kicker{
+    font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--rose);margin-bottom:22px;
+  }
+  .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:18px}
+  .hero h1 em{color:var(--green);font-style:italic}
+  .hero p.lede{font-size:1.15rem;color:var(--soft);max-width:560px;margin:0 auto 34px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero-img{margin:54px auto 0;max-width:420px;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.10)}
+  .hero-img img{display:block;width:100%;height:auto}
+  .hero-cap{font-size:.8rem;color:var(--soft);letter-spacing:.12em;text-transform:uppercase;margin-top:14px}
 
-/* filters */
-.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 24px 40px;}
-.filter-chip{border:1px solid var(--line);background:#fff;padding:8px 18px;border-radius:20px;
-  font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;color:var(--muted);}
-.filter-chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .strip{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:20px 0;text-align:center;
+    font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);
+  }
+  .strip span{margin:0 14px;white-space:nowrap}
+  .strip b{color:var(--green);font-weight:500}
 
-/* product grid */
-.shop{padding:10px 24px 90px;}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:36px 26px;max-width:1180px;margin:0 auto;}
-.card{position:relative;}
-.card .imgwrap{aspect-ratio:1/1;overflow:hidden;background:var(--panel);margin-bottom:16px;}
-.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
-.card:hover img{transform:scale(1.04);}
-.card h3{font-size:1rem;font-family:'Jost',sans-serif;font-weight:500;margin-bottom:4px;}
-.card .price{color:var(--muted);font-size:.92rem;margin-bottom:12px;}
-.card .actions{display:flex;gap:8px;}
-.card button.add{flex:1;background:var(--ink);color:#fff;border:none;padding:10px;font-size:.72rem;
-  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;}
-.card a.buy{flex:1;text-align:center;padding:10px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-  border:1px solid var(--line);text-decoration:none;color:var(--ink);border-radius:2px;}
+  /* ---------- sections ---------- */
+  section{padding:84px 0}
+  .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
+  .sec-head .kicker{font-size:.76rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
+  .sec-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
+  .sec-head p{color:var(--soft);font-size:1.05rem}
 
-/* about / footer */
-.about{background:var(--panel);padding:80px 24px;text-align:center;}
-.about h2{font-size:1.8rem;margin-bottom:16px;}
-.about p{max-width:560px;margin:0 auto;color:var(--muted);line-height:1.7;}
-footer{padding:60px 24px 40px;border-top:1px solid var(--line);}
-.foot-grid{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;max-width:1180px;margin:0 auto 40px;}
-.foot-col h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;color:var(--muted);}
-.foot-col a{display:block;text-decoration:none;font-size:.9rem;margin-bottom:8px;opacity:.8;}
-.foot-bottom{text-align:center;font-size:.78rem;color:var(--muted);}
+  /* ---------- products ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:34px}
+  .card{
+    border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;
+    display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.08)}
+  .card .ph{aspect-ratio:1/1;overflow:hidden;background:#fafafa}
+  .card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+  .card:hover .ph img{transform:scale(1.04)}
+  .card .body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1;text-align:center}
+  .card h3{font-size:1.45rem;margin-bottom:8px}
+  .card .desc{font-size:.94rem;color:var(--soft);margin-bottom:14px;flex:1}
+  .card .price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:16px}
+  .card .note{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
+  .scarcity{
+    text-align:center;margin-top:44px;font-size:.95rem;color:var(--soft);
+    border:1px dashed var(--rose);border-radius:999px;display:inline-block;padding:12px 30px;
+  }
+  .scarcity-wrap{text-align:center}
+  .scarcity b{color:var(--ink);font-weight:500}
 
-/* cart drawer */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90;}
-.overlay.open{opacity:1;pointer-events:auto;}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:#fff;z-index:95;
-  transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;}
-.drawer.open{transform:translateX(0);}
-.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line);}
-.drawer-head h3{font-family:'Jost';font-size:1rem;text-transform:uppercase;letter-spacing:.08em;}
-.drawer-close{background:none;border:none;font-size:1.3rem;cursor:pointer;}
-#cartItems{flex:1;overflow-y:auto;padding:10px 24px;}
-.cart-item{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);}
-.cart-item img{width:64px;height:64px;object-fit:cover;background:var(--panel);}
-.cart-item .info{flex:1;}
-.cart-item .info .name{font-size:.9rem;margin-bottom:4px;}
-.cart-item .info .price{font-size:.82rem;color:var(--muted);}
-.qty{display:flex;align-items:center;gap:8px;margin-top:8px;}
-.qty button{width:22px;height:22px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.8rem;}
-.remove-item{background:none;border:none;color:var(--muted);font-size:.75rem;text-decoration:underline;cursor:pointer;margin-top:6px;}
-.drawer-foot{padding:20px 24px 28px;border-top:1px solid var(--line);}
-.subtotal{display:flex;justify-content:space-between;font-size:.95rem;margin-bottom:16px;}
-.empty-cart{color:var(--muted);font-size:.88rem;padding:40px 0;text-align:center;}
+  /* ---------- how it works ---------- */
+  .how{background:var(--rose-soft)}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:30px;margin-top:10px}
+  .step{text-align:center;padding:10px}
+  .step .num{
+    width:52px;height:52px;border-radius:50%;margin:0 auto 18px;
+    background:var(--white);border:1px solid var(--rose);color:var(--rose);
+    font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step h3{font-size:1.3rem;margin-bottom:8px}
+  .step p{font-size:.94rem;color:var(--soft)}
+  .step a{color:var(--green);font-weight:500}
+  .how-cta{text-align:center;margin-top:44px}
 
-@media (max-width:760px){
-  .nav-links{position:fixed;top:64px;left:0;right:0;background:#fff;flex-direction:column;gap:0;
-    border-bottom:1px solid var(--line);transform:translateY(-120%);transition:transform .25s;padding:10px 24px;}
-  .nav-links.open{transform:translateY(0);}
-  .nav-links a{display:block;padding:14px 0;border-bottom:1px solid var(--line);}
-  .menu-toggle{display:block;}
-}
+  /* ---------- about ---------- */
+  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  @media(max-width:820px){.about .wrap{grid-template-columns:1fr}}
+  .about img{width:100%;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,.10)}
+  .about h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:18px}
+  .about h2 em{color:var(--rose);font-style:italic}
+  .about p{color:var(--soft);margin-bottom:16px;font-size:1.04rem}
+  .about p b{color:var(--ink);font-weight:500}
+  .sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--green);margin-top:10px}
+
+  /* ---------- faq ---------- */
+  .faq{max-width:720px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--line);padding:20px 4px}
+  .faq summary{cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';float:right;color:var(--rose);font-weight:400}
+  .faq details[open] summary::after{content:'–'}
+  .faq p{color:var(--soft);margin-top:10px;font-size:.98rem}
+  .faq a{color:var(--green);font-weight:500}
+
+  /* ---------- final cta ---------- */
+  .final{text-align:center;background:var(--white);border-top:1px solid var(--line)}
+  .final h2{font-size:clamp(2.1rem,4.5vw,3.1rem);margin-bottom:16px}
+  .final h2 em{color:var(--green);font-style:italic}
+  .final p{color:var(--soft);max-width:520px;margin:0 auto 32px;font-size:1.05rem}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:54px 0 40px;text-align:center}
+  footer .flogo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:.05em;margin-bottom:10px}
+  footer p{color:var(--soft);font-size:.92rem;margin-bottom:8px}
+  footer a{color:var(--green);font-weight:500;text-decoration:none}
+  footer .fine{margin-top:22px;font-size:.8rem;color:#9a9a9a;letter-spacing:.06em}
 </style>
 </head>
 <body>
 
-<header>
-  <nav class="nav">
-    <a href="#top" class="brand" id="brandName">Your Shop</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#shop">Shop</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <button id="cartBtn" aria-label="Open cart">🛍️<span id="cartCount">0</span></button>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰</button>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Miso<em>Pretty</em> Seeds</a>
+    <div class="nav-links">
+      <a href="#shop">Shop</a>
+      <a href="#how">How it works</a>
+      <a href="#about">About</a>
+      <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order on X</a>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker">Small-batch flower seeds</div>
+    <h1>Heirloom seeds,<br><em>pretty packets.</em></h1>
+    <p class="lede">Garden-girl approved varieties, chosen for beauty and charm — packed with love in California and shipped straight to your garden.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#shop">Shop the collection</a>
+      <a class="btn rose" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM to order</a>
+    </div>
+    <div class="hero-img">
+      <img src="images/seed-packet.png" alt="MisoPretty Seeds tree peony seed packet">
+    </div>
+    <div class="hero-cap">Every packet designed by hand</div>
+  </div>
 </header>
 
-<section class="hero" id="top">
-  <div class="eyebrow">New arrivals every week</div>
-  <h1>Simple, honest goods — made to last.</h1>
-  <p>A small, carefully curated shop. Every piece picked (or made) by hand.</p>
-  <a href="#shop" class="btn">Shop the collection</a>
-</section>
-
-<div class="filters" id="filters"></div>
-
-<section class="shop" id="shop">
-  <div class="grid" id="productGrid"></div>
-</section>
-
-<section class="about" id="about">
-  <h2>Our story</h2>
-  <p>Tell your customers who you are, what you make, and why it matters. A couple of honest sentences goes a long way — replace this with your own story.</p>
-</section>
-
-<footer id="contact">
-  <div class="foot-grid">
-    <div class="foot-col">
-      <h4>Shop</h4>
-      <a href="#shop">All products</a>
-      <a href="#about">About</a>
-    </div>
-    <div class="foot-col">
-      <h4>Support</h4>
-      <a href="mailto:you@example.com">Email us</a>
-      <a href="#">Shipping &amp; returns</a>
-    </div>
-    <div class="foot-col">
-      <h4>Follow</h4>
-      <a href="#">Instagram</a>
-      <a href="#">TikTok</a>
-    </div>
-  </div>
-  <div class="foot-bottom">© <span id="year"></span> Your Shop. All rights reserved.</div>
-</footer>
-
-<div class="overlay" id="overlay"></div>
-<div class="drawer" id="cartDrawer">
-  <div class="drawer-head">
-    <h3>Your Cart</h3>
-    <button class="drawer-close" id="drawerClose">✕</button>
-  </div>
-  <div id="cartItems"></div>
-  <div class="drawer-foot">
-    <div class="subtotal"><span>Subtotal</span><span id="subtotalAmt">$0.00</span></div>
-    <button class="btn" style="width:100%;" id="checkoutBtn">Checkout</button>
-    <p style="font-size:.72rem;color:var(--muted);margin-top:10px;">
-      Checkout sends your order to us by email — we'll follow up with a payment link.
-      Prefer instant card checkout? Use the "Buy now" link on any product that has one.
-    </p>
+<div class="strip">
+  <div class="wrap">
+    <span><b>✿</b> Small-batch</span><span><b>✿</b> Germination-tested</span><span><b>✿</b> Packed with love</span>
   </div>
 </div>
 
-<script>
-/* ============================================================
-   1) SHOP SETTINGS — edit these
-   ============================================================ */
-const SHOP_NAME  = "Your Shop";
-const SHOP_EMAIL = "you@example.com"; // orders are emailed here via mailto:
+<section id="shop">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">The collection</div>
+      <h2>Shop our seeds</h2>
+      <p>Small-batch flower seeds, hand-picked and packed with love. Choose your favorites below.</p>
+    </div>
 
-/* ============================================================
-   2) PRODUCTS — add, remove, or edit freely.
-      "buy" is optional: paste a Stripe Payment Link, PayPal.me
-      link, or Gumroad link there for instant one-click checkout
-      on that item. Leave it out (or "") to skip that button.
-   ============================================================ */
-const PRODUCTS = [
-  { id:1, name:"Ceramic Mug",      price:24, category:"Home",  img:"https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=600&q=80", buy:"" },
-  { id:2, name:"Linen Tote Bag",   price:38, category:"Bags",  img:"https://images.unsplash.com/photo-1592878849122-facb97520f9e?w=600&q=80", buy:"" },
-  { id:3, name:"Oak Candle",       price:19, category:"Home",  img:"https://images.unsplash.com/photo-1602874801007-bd36c0a1e4d4?w=600&q=80", buy:"" },
-  { id:4, name:"Wool Scarf",       price:45, category:"Apparel", img:"https://images.unsplash.com/photo-1520006403909-838d6b92c22e?w=600&q=80", buy:"" },
-  { id:5, name:"Leather Notebook", price:28, category:"Paper", img:"https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=80", buy:"" },
-  { id:6, name:"Woven Basket",     price:32, category:"Home",  img:"https://images.unsplash.com/photo-1523419409543-a5e549c1faa8?w=600&q=80", buy:"" }
-];
+    <div class="grid">
 
-/* ============================================================
-   Everything below this line is functional code —
-   you shouldn't need to touch it.
-   ============================================================ */
-document.getElementById('brandName').textContent = SHOP_NAME;
-document.title = SHOP_NAME;
-document.getElementById('year').textContent = new Date().getFullYear();
-
-const fmt = n => '$' + n.toFixed(2);
-const grid = document.getElementById('productGrid');
-const filtersEl = document.getElementById('filters');
-
-const categories = ['All', ...new Set(PRODUCTS.map(p=>p.category))];
-categories.forEach(cat=>{
-  const b=document.createElement('button');
-  b.className='filter-chip'+(cat==='All'?' active':'');
-  b.textContent=cat;
-  b.onclick=()=>{
-    document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
-    b.classList.add('active');
-    renderProducts(cat);
-  };
-  filtersEl.appendChild(b);
-});
-
-function renderProducts(filter){
-  grid.innerHTML='';
-  PRODUCTS.filter(p=>!filter||filter==='All'||p.category===filter).forEach(p=>{
-    const card=document.createElement('div'); card.className='card';
-    card.innerHTML=`
-      <div class="imgwrap"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
-      <h3>${p.name}</h3>
-      <div class="price">${fmt(p.price)}</div>
-      <div class="actions">
-        <button class="add" data-id="${p.id}">Add to cart</button>
-        ${p.buy ? `<a class="buy" href="${p.buy}" target="_blank" rel="noopener">Buy now</a>` : ''}
-      </div>`;
-    card.querySelector('.add').onclick=()=>addToCart(p.id);
-    grid.appendChild(card);
-  });
-}
-renderProducts('All');
-
-/* ---------------- cart ---------------- */
-let cart = JSON.parse(localStorage.getItem('shop_cart')||'{}');
-function saveCart(){ localStorage.setItem('shop_cart', JSON.stringify(cart)); renderCart(); }
-function addToCart(id){ cart[id]=(cart[id]||0)+1; saveCart(); openCart(); }
-function changeQty(id,delta){
-  cart[id]=(cart[id]||0)+delta;
-  if(cart[id]<=0) delete cart[id];
-  saveCart();
-}
-function removeItem(id){ delete cart[id]; saveCart(); }
-
-function renderCart(){
-  const itemsEl=document.getElementById('cartItems');
-  const ids=Object.keys(cart);
-  document.getElementById('cartCount').textContent = ids.reduce((s,id)=>s+cart[id],0);
-  if(ids.length===0){
-    itemsEl.innerHTML='<div class="empty-cart">Your cart is empty</div>';
-    document.getElementById('subtotalAmt').textContent=fmt(0);
-    return;
-  }
-  let subtotal=0;
-  itemsEl.innerHTML='';
-  ids.forEach(id=>{
-    const p=PRODUCTS.find(x=>x.id==id); if(!p) return;
-    const qty=cart[id]; subtotal+=p.price*qty;
-    const row=document.createElement('div'); row.className='cart-item';
-    row.innerHTML=`
-      <img src="${p.img}" alt="${p.name}">
-      <div class="info">
-        <div class="name">${p.name}</div>
-        <div class="price">${fmt(p.price)}</div>
-        <div class="qty">
-          <button data-a="dec">−</button><span>${qty}</span><button data-a="inc">+</button>
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Common Sunflower seeds"></div>
+        <div class="body">
+          <h3>Common Sunflower</h3>
+          <p class="desc">Tall, classic yellow blooms. Easy to grow.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
         </div>
-        <button class="remove-item">Remove</button>
-      </div>`;
-    row.querySelector('[data-a="dec"]').onclick=()=>changeQty(id,-1);
-    row.querySelector('[data-a="inc"]').onclick=()=>changeQty(id,1);
-    row.querySelector('.remove-item').onclick=()=>removeItem(id);
-    itemsEl.appendChild(row);
-  });
-  document.getElementById('subtotalAmt').textContent=fmt(subtotal);
-}
-renderCart();
+      </div>
 
-const overlay=document.getElementById('overlay'), drawer=document.getElementById('cartDrawer');
-function openCart(){ overlay.classList.add('open'); drawer.classList.add('open'); }
-function closeCart(){ overlay.classList.remove('open'); drawer.classList.remove('open'); }
-document.getElementById('cartBtn').onclick=openCart;
-document.getElementById('drawerClose').onclick=closeCart;
-overlay.onclick=closeCart;
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Cosmos seeds"></div>
+        <div class="body">
+          <h3>Cosmos</h3>
+          <p class="desc">Delicate flowers that bloom all summer long.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
 
-document.getElementById('checkoutBtn').onclick=()=>{
-  const ids=Object.keys(cart);
-  if(ids.length===0) return;
-  let lines=[], subtotal=0;
-  ids.forEach(id=>{
-    const p=PRODUCTS.find(x=>x.id==id); if(!p) return;
-    const qty=cart[id]; subtotal+=p.price*qty;
-    lines.push(`${qty} x ${p.name} — ${fmt(p.price)} each`);
-  });
-  const body=encodeURIComponent(
-    `Hi ${SHOP_NAME},\n\nI'd like to order:\n\n${lines.join('\n')}\n\nSubtotal: ${fmt(subtotal)}\n\nMy shipping address:\n`
-  );
-  window.location.href = `mailto:${SHOP_EMAIL}?subject=${encodeURIComponent('New order from '+SHOP_NAME)}&body=${body}`;
-};
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Mammoth Sunflower seeds"></div>
+        <div class="body">
+          <h3>Mammoth Sunflower</h3>
+          <p class="desc">Grows up to 10 feet tall. A real garden statement.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
 
-/* mobile menu */
-const menuToggle=document.getElementById('menuToggle'), navLinks=document.getElementById('navLinks');
-menuToggle.onclick=()=>navLinks.classList.toggle('open');
-navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
-</script>
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Nasturtium seeds"></div>
+        <div class="body">
+          <h3>Nasturtium</h3>
+          <p class="desc">Bright, edible flowers. Very easy to grow.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Poppy seeds"></div>
+        <div class="body">
+          <h3>Poppy</h3>
+          <p class="desc">Beautiful papery blooms. Self-seeds for next year.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Lavender seeds"></div>
+        <div class="body">
+          <h3>Lavender</h3>
+          <p class="desc">Fragrant purple blooms. Loved by bees.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Flower seeds"></div>
+        <div class="body">
+          <div class="note">✿ New variety dropping soon ✿</div>
+          <h3>Flower</h3>
+          <p class="desc">New variety coming soon. DM for first dibs.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ph"><img src="images/seed-packet.png" alt="Flower seeds"></div>
+        <div class="body">
+          <div class="note">✿ New variety dropping soon ✿</div>
+          <h3>Flower</h3>
+          <p class="desc">New variety coming soon. DM for first dibs.</p>
+          <div class="price">$4.99</div>
+          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scarcity-wrap">
+      <p class="scarcity"><b>Small batches only</b> — when a variety sells out, it's gone until next season.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Easy as planting</div>
+      <h2>How ordering works</h2>
+      <p>No carts, no checkout maze — just you, me, and the flowers. Here's the whole thing:</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Pick your seeds</h3>
+        <p>Browse the collection above and choose the varieties your garden is dreaming of.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>DM me on X</h3>
+        <p>Send a message to <a href="https://x.com/igotglitteronme" target="_blank" rel="noopener">@igotglitteronme</a> with the varieties you want. I reply personally — usually fast!</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>Pay your way</h3>
+        <p>I'll send you my payment link in the DM — Cash App, Venmo, Zelle, or PayPal, whichever you like.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <h3>Seeds ship to you</h3>
+        <p>Your pretty packets go in the mail, and before you know it you'll have blooms of your very own.</p>
+      </div>
+    </div>
+    <div class="how-cta">
+      <a class="btn" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Start your order — DM me</a>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div>
+      <img src="images/seed-packet.png" alt="Hand-designed MisoPretty Seeds packet">
+    </div>
+    <div>
+      <h2>Grown with <em>glitter</em></h2>
+      <p>Hi, I'm the garden girl behind MisoPretty Seeds. I grow flowers in California's Central Valley, and I design <b>every single packet myself</b> — because seeds this pretty deserve packaging to match.</p>
+      <p>Each variety in the shop is one I'd plant in my own garden: <b>beautiful, charming, and genuinely joyful to grow</b>. Small batches, germination-tested, and packed with love before they head to your mailbox.</p>
+      <p>Whether this is your first seed ever or your five-hundredth, I'm so glad you're here. Let's grow something beautiful together.</p>
+      <div class="sig">— your garden girl 🌱</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Good to know</div>
+      <h2>Questions, answered</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>How do I pay for my seeds?</summary>
+        <p>Right in our DM conversation! After you message me on X, I'll send you my payment link — Cash App, Venmo, Zelle, or PayPal, your choice. Quick, simple, no accounts to create.</p>
+      </details>
+      <details>
+        <summary>When will my seeds ship?</summary>
+        <p>Orders go out within a few days of payment. I'll confirm in the DM the moment your pretty packets are on their way.</p>
+      </details>
+      <details>
+        <summary>What if my seeds don't sprout?</summary>
+        <p>Every batch is germination-tested before it goes in a packet — but if something goes wrong, just DM me and we'll make it right. I want you to have flowers, not frustrations.</p>
+      </details>
+      <details>
+        <summary>Can I request a variety that's sold out?</summary>
+        <p>Yes! DM me and I'll put you first in line for the next batch. Small-batch means limited, but it also means I restock with care.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Ready to <em>grow?</em></h2>
+    <p>Pick your seeds above and DM me to place your order.</p>
+    <a class="btn" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM @igotglitteronme to order</a>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="flogo">MisoPretty Seeds</div>
+    <p>Heirloom seeds, pretty packets — packed with love in California.</p>
+    <p>Questions? <a href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM @igotglitteronme on X</a> · <a href="mailto:hello@misoprettyseeds.com">hello@misoprettyseeds.com</a></p>
+    <p class="fine">© 2026 MisoPretty Seeds · All rights reserved</p>
+  </div>
+</footer>
+
 </body>
 </html>
