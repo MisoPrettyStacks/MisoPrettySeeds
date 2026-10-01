@@ -628,14 +628,17 @@ img {
 
 .seed-product__details {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 7px 12px;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 7px 14px;
   padding: 14px 2px 0;
   text-align: center;
-  justify-items: center;
 }
 
 .seed-product__name {
+  grid-column: 1;
+  grid-row: 1;
   margin: 0;
   color: #000;
   font-family: var(--seed-display);
@@ -645,6 +648,7 @@ img {
 }
 
 .seed-product__price {
+  grid-column: 1 / -1;
   margin: 2px 0 0;
   color: #000;
   font-size: 13px;
@@ -662,8 +666,8 @@ img {
   display: grid;
   width: 36px;
   aspect-ratio: 1;
-  grid-row: auto;
-  grid-column: 1;
+  grid-row: 1;
+  grid-column: 2;
   place-items: center;
   border: 0;
   border-radius: 50%;
