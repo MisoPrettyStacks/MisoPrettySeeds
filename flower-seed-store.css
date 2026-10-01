@@ -628,9 +628,8 @@ img {
 
 .seed-product__details {
   display: grid;
-  grid-template-columns: auto auto;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 1fr;
+  justify-items: center;
   gap: 7px 14px;
   padding: 14px 2px 0;
   text-align: center;
@@ -648,7 +647,8 @@ img {
 }
 
 .seed-product__price {
-  grid-column: 1 / -1;
+  grid-column: 1;
+  grid-row: 2;
   margin: 2px 0 0;
   color: #000;
   font-size: 13px;
@@ -656,7 +656,8 @@ img {
 }
 
 .seed-product__meta {
-  grid-column: 1 / -1;
+  grid-column: 1;
+  grid-row: 3;
   margin: 0;
   color: #000;
   font-size: 11px;
@@ -666,8 +667,8 @@ img {
   display: grid;
   width: 36px;
   aspect-ratio: 1;
-  grid-row: 1;
-  grid-column: 2;
+  grid-row: 4;
+  grid-column: 1;
   place-items: center;
   border: 0;
   border-radius: 50%;
