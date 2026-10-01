@@ -395,9 +395,10 @@ img {
 .seed-hero__bloom {
   position: absolute;
   z-index: 3;
-  top: 18%;
-  right: 17%;
-  width: clamp(80px, 12vw, 170px);
+  top: 55%;
+  left: 50%;
+  translate: -50% -50%;
+  width: clamp(60px, 9vw, 120px);
   aspect-ratio: 0.693;
   object-fit: cover;
   object-position: center;
@@ -860,8 +861,9 @@ img {
   }
 
   .seed-hero__bloom {
-    right: 9%;
-    width: 15vw;
+    left: 50%;
+    top: 54%;
+    width: 11vw;
   }
 
   .seed-product-grid {
@@ -951,10 +953,10 @@ img {
   }
 
   .seed-hero__bloom {
-    top: 22%;
-    right: -5%;
-    width: 24vw;
-    max-width: 125px;
+    top: 30%;
+    left: 50%;
+    width: 26vw;
+    max-width: 110px;
     opacity: 0.95;
   }
 
