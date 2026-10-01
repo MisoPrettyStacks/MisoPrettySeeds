@@ -94,8 +94,8 @@
 <body>
 <noscript><style>.seed-intro{display:none!important}</style></noscript>
 <div class="seed-intro" id="seedIntro" role="button" tabindex="0" aria-label="Enter the shop">
-  <div class="seed-intro__door seed-intro__door--left"></div>
-  <div class="seed-intro__door seed-intro__door--right"></div>
+  <div class="seed-intro__door seed-intro__door--left"><span class="seed-intro__handle"></span></div>
+  <div class="seed-intro__door seed-intro__door--right"><span class="seed-intro__handle"></span></div>
   <span class="seed-intro__enter">Enter</span>
 </div>
 <div class="seed-store">
@@ -339,7 +339,7 @@
     setTimeout(function () {
       intro.classList.add('seed-intro--gone');
       document.body.style.overflow = '';
-    }, 1500);
+    }, 2700);
   }
   intro.addEventListener('click', open);
   intro.addEventListener('keydown', function (e) {
