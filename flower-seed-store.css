@@ -33,7 +33,7 @@ body {
   margin: 0;
   background:
     linear-gradient(rgba(10, 20, 10, 0.42), rgba(10, 20, 10, 0.42)),
-    url("images/page-garden.jpg") center / cover no-repeat fixed,
+    url("images/page-leaves.jpg") center / cover no-repeat fixed,
     var(--seed-forest);
   color: var(--seed-ink);
   font-family: var(--seed-body);
