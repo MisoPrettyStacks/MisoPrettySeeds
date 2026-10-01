@@ -4,355 +4,287 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MisoPretty Seeds — Heirloom seeds, pretty flowers</title>
-<meta name="description" content="Small-batch flower seeds, packed with love in California. Heirloom seeds, flowers packets. Order via DM on X.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Small-batch flower seeds, packed with love in California. Heirloom seeds, pretty flowers. Order via DM on X.">
+<link rel="stylesheet" href="flower-seed-store.css">
 <style>
-  :root{
-    --white:#ffffff;
-    --ink:#333333;
-    --soft:#6f6f6f;
-    --green:#7a8b5c;
-    --green-dark:#67784d;
-    --rose:#c08a94;
-    --rose-soft:#f9eff1;
-    --line:#ececec;
+  /* Bridge: the shop's extra sections, written in the theme's own token language */
+  .seed-product__add{font-size:20px;font-weight:400;line-height:1}
+  @media(min-width:761px){
+    .seed-hero__copy{top:36%}
+    .seed-hero__copy h2{max-width:20ch;font-size:clamp(34px,4.4vw,60px)}
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--white);
-    color:var(--ink);
-    font-family:'Jost',system-ui,-apple-system,sans-serif;
-    font-weight:300;
-    line-height:1.7;
-    -webkit-font-smoothing:antialiased;
+  .seed-scarcity{
+    max-width:640px;margin:44px auto 0;padding:14px 30px;
+    border:1px dashed var(--seed-rose);border-radius:999px;
+    color:rgba(22,37,21,.66);font-size:14px;text-align:center;line-height:1.6;
   }
-  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;line-height:1.2}
-  a{color:inherit}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
-
-  /* ---------- nav ---------- */
-  nav{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,.96);
-    border-bottom:1px solid var(--line);
-    backdrop-filter:blur(6px);
+  .seed-scarcity strong{color:var(--seed-ink);font-weight:600}
+  .seed-center{text-align:center;margin-top:40px}
+  .seed-steps{
+    display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;
+    margin:0;padding:0;list-style:none;
   }
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px}
-  .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:600;letter-spacing:.06em;text-decoration:none}
-  .logo em{color:var(--green);font-style:normal}
-  .nav-links{display:flex;gap:28px;align-items:center}
-  .nav-links a{text-decoration:none;font-size:.86rem;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);transition:color .2s}
-  .nav-links a:hover{color:var(--ink)}
-  .btn{
-    display:inline-block;text-decoration:none;cursor:pointer;border:none;
-    background:var(--green);color:#fff;
-    font-family:'Jost',sans-serif;font-weight:500;font-size:.85rem;letter-spacing:.16em;text-transform:uppercase;
-    padding:14px 34px;border-radius:999px;transition:background .25s,transform .15s;
+  .seed-steps li{text-align:center;padding:6px}
+  .seed-steps__num{
+    display:grid;place-items:center;width:52px;height:52px;margin:0 auto 18px;
+    border:1px solid var(--seed-rose);border-radius:50%;background:var(--seed-paper);
+    color:var(--seed-rose);font-family:var(--seed-display);font-size:24px;font-weight:500;
   }
-  .btn:hover{background:var(--green-dark);transform:translateY(-1px)}
-  .btn.rose{background:var(--rose)}
-  .btn.rose:hover{background:#a97782}
-  .btn.small{padding:11px 26px;font-size:.78rem}
-  @media(max-width:720px){.nav-links a:not(.btn){display:none}}
-
-  /* ---------- hero ---------- */
-  .hero{padding:90px 0 70px;text-align:center}
-  .hero .kicker{
-    font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;color:var(--rose);margin-bottom:22px;
+  .seed-steps h3{
+    margin:0 0 8px;color:var(--seed-ink);font-family:var(--seed-display);
+    font-size:21px;font-weight:500;letter-spacing:-.02em;
   }
-  .hero h1{font-size:clamp(2.6rem,6vw,4.4rem);margin-bottom:18px}
-  .hero h1 em{color:var(--green);font-style:italic}
-  .hero p.lede{font-size:1.15rem;color:var(--soft);max-width:560px;margin:0 auto 34px}
-  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .hero-img{margin:54px auto 0;max-width:420px;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.10)}
-  .hero-img img{display:block;width:100%;height:auto}
-  .hero-cap{font-size:.8rem;color:var(--soft);letter-spacing:.12em;text-transform:uppercase;margin-top:14px}
-
-  .strip{
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-    padding:20px 0;text-align:center;
-    font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--soft);
+  .seed-steps p{margin:0;color:rgba(22,37,21,.66);font-size:13px;line-height:1.6}
+  .seed-steps a{color:var(--seed-moss);font-weight:600}
+  .seed-about{
+    display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;
   }
-  .strip span{margin:0 14px;white-space:nowrap}
-  .strip b{color:var(--green);font-weight:500}
-
-  /* ---------- sections ---------- */
-  section{padding:84px 0}
-  .sec-head{text-align:center;max-width:640px;margin:0 auto 54px}
-  .sec-head .kicker{font-size:.76rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose);margin-bottom:14px}
-  .sec-head h2{font-size:clamp(2rem,4vw,2.9rem);margin-bottom:14px}
-  .sec-head p{color:var(--soft);font-size:1.05rem}
-
-  /* ---------- products ---------- */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:34px}
-  .card{
-    border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;
-    display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;
+  .seed-about img{
+    width:100%;border-radius:20px;
+    box-shadow:0 24px 60px rgba(10,21,10,.18);
   }
-  .card:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(0,0,0,.08)}
-  .card .ph{aspect-ratio:1/1;overflow:hidden;background:#fafafa}
-  .card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-  .card:hover .ph img{transform:scale(1.04)}
-  .card .body{padding:22px 22px 26px;display:flex;flex-direction:column;flex:1;text-align:center}
-  .card h3{font-size:1.45rem;margin-bottom:8px}
-  .card .desc{font-size:.94rem;color:var(--soft);margin-bottom:14px;flex:1}
-  .card .price{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:16px}
-  .card .note{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:10px}
-  .scarcity{
-    text-align:center;margin-top:44px;font-size:.95rem;color:var(--soft);
-    border:1px dashed var(--rose);border-radius:999px;display:inline-block;padding:12px 30px;
+  .seed-about h2{
+    margin:0 0 18px;color:var(--seed-ink);font-family:var(--seed-display);
+    font-size:clamp(34px,4.5vw,54px);font-weight:500;letter-spacing:-.05em;line-height:1;
   }
-  .scarcity-wrap{text-align:center}
-  .scarcity b{color:var(--ink);font-weight:500}
-
-  /* ---------- how it works ---------- */
-  .how{background:var(--rose-soft)}
-  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:30px;margin-top:10px}
-  .step{text-align:center;padding:10px}
-  .step .num{
-    width:52px;height:52px;border-radius:50%;margin:0 auto 18px;
-    background:var(--white);border:1px solid var(--rose);color:var(--rose);
-    font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;
-    display:flex;align-items:center;justify-content:center;
+  .seed-about p{color:rgba(22,37,21,.72);font-size:15px;line-height:1.7;margin:0 0 16px}
+  .seed-about p strong{color:var(--seed-ink);font-weight:600}
+  .seed-sig{
+    font-family:var(--seed-display);font-style:italic;font-size:22px;color:var(--seed-moss);margin:6px 0 0;
   }
-  .step h3{font-size:1.3rem;margin-bottom:8px}
-  .step p{font-size:.94rem;color:var(--soft)}
-  .step a{color:var(--green);font-weight:500}
-  .how-cta{text-align:center;margin-top:44px}
-
-  /* ---------- about ---------- */
-  .about .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-  @media(max-width:820px){.about .wrap{grid-template-columns:1fr}}
-  .about img{width:100%;border-radius:8px;box-shadow:0 24px 60px rgba(0,0,0,.10)}
-  .about h2{font-size:clamp(2rem,4vw,2.8rem);margin-bottom:18px}
-  .about h2 em{color:var(--rose);font-style:italic}
-  .about p{color:var(--soft);margin-bottom:16px;font-size:1.04rem}
-  .about p b{color:var(--ink);font-weight:500}
-  .sig{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--green);margin-top:10px}
-
-  /* ---------- faq ---------- */
-  .faq{max-width:720px;margin:0 auto}
-  .faq details{border-bottom:1px solid var(--line);padding:20px 4px}
-  .faq summary{cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;list-style:none}
-  .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:'+';float:right;color:var(--rose);font-weight:400}
-  .faq details[open] summary::after{content:'–'}
-  .faq p{color:var(--soft);margin-top:10px;font-size:.98rem}
-  .faq a{color:var(--green);font-weight:500}
-
-  /* ---------- final cta ---------- */
-  .final{text-align:center;background:var(--white);border-top:1px solid var(--line)}
-  .final h2{font-size:clamp(2.1rem,4.5vw,3.1rem);margin-bottom:16px}
-  .final h2 em{color:var(--green);font-style:italic}
-  .final p{color:var(--soft);max-width:520px;margin:0 auto 32px;font-size:1.05rem}
-
-  /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--line);padding:54px 0 40px;text-align:center}
-  footer .flogo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;letter-spacing:.05em;margin-bottom:10px}
-  footer p{color:var(--soft);font-size:.92rem;margin-bottom:8px}
-  footer a{color:var(--green);font-weight:500;text-decoration:none}
-  footer .fine{margin-top:22px;font-size:.8rem;color:#9a9a9a;letter-spacing:.06em}
+  .seed-faq{max-width:720px;margin:0 auto}
+  .seed-faq details{border-bottom:1px solid var(--seed-line);padding:20px 4px}
+  .seed-faq summary{
+    cursor:pointer;list-style:none;color:var(--seed-ink);
+    font-family:var(--seed-display);font-size:21px;font-weight:500;
+  }
+  .seed-faq summary::-webkit-details-marker{display:none}
+  .seed-faq summary::after{content:'+';float:right;color:var(--seed-rose);font-weight:400}
+  .seed-faq details[open] summary::after{content:'–'}
+  .seed-faq p{color:rgba(22,37,21,.66);margin:10px 0 0;font-size:14px;line-height:1.65}
+  .seed-final{
+    padding:clamp(56px,8vw,100px) 24px;text-align:center;
+    border-top:1px solid var(--seed-line);
+  }
+  .seed-final h2{
+    margin:0 0 16px;color:var(--seed-ink);font-family:var(--seed-display);
+    font-size:clamp(38px,5.5vw,64px);font-weight:500;letter-spacing:-.05em;line-height:1;
+  }
+  .seed-final p{color:rgba(22,37,21,.66);max-width:46ch;margin:0 auto 32px;font-size:15px;line-height:1.65}
+  .seed-footer strong{
+    display:block;font-family:var(--seed-display);font-size:20px;font-weight:600;
+    letter-spacing:-.02em;margin-bottom:6px;
+  }
+  .seed-footer p{margin:0;max-width:44ch;line-height:1.6}
+  .seed-footer__links a{font-weight:600;color:var(--seed-moss)}
+  .seed-fine{
+    padding:0 clamp(4px,2vw,24px) 8px;color:rgba(22,37,21,.45);
+    font-size:11px;letter-spacing:.06em;text-align:center;
+  }
+  @media(max-width:900px){
+    .seed-steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .seed-about{grid-template-columns:1fr}
+  }
+  @media(max-width:620px){
+    .seed-steps{grid-template-columns:1fr}
+    .seed-hero__copy h2 br{display:none}
+  }
 </style>
 </head>
 <body>
+<div class="seed-store">
+<div class="seed-frame">
 
-<nav>
-  <div class="wrap">
-    <a class="logo" href="#top">Miso<em>Pretty</em> Seeds</a>
-    <div class="nav-links">
+  <header class="seed-header">
+    <a class="seed-brand" href="#top"><span class="seed-brand__mark">✿</span>&nbsp;MisoPretty Seeds</a>
+    <nav class="seed-nav" aria-label="Primary">
       <a href="#shop">Shop</a>
       <a href="#how">How it works</a>
       <a href="#about">About</a>
-      <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order on X</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="seed-header__actions">
+      <a class="seed-button" style="min-height:40px;font-size:12px" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order on X</a>
     </div>
-  </div>
-</nav>
+  </header>
 
-<header class="hero" id="top">
-  <div class="wrap">
-    <div class="kicker">Small-batch flower seeds</div>
-    <h1>Heirloom seeds,<br><em>pretty packets.</em></h1>
-    <p class="lede">Garden-girl approved varieties, chosen for beauty and charm — packed with love in California and shipped straight to your garden.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#shop">Shop the collection</a>
-      <a class="btn rose" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM to order</a>
+  <section class="seed-hero" id="top">
+    <h1 class="seed-hero__headline"><span>Heirloom</span><span>Seeds</span></h1>
+    <div class="seed-hero__copy">
+      <p class="seed-eyebrow">Small-batch flower seeds</p>
+      <h2>Pretty flowers,<br>packed by hand</h2>
+      <p>Garden-girl approved varieties, chosen for beauty and charm — packed with love in California and shipped straight to your garden.</p>
+      <a class="seed-button seed-button--light" href="#shop">Shop the collection <span class="seed-button__arrow">→</span></a>
     </div>
-    <div class="hero-img">
-      <img src="images/seed-packet.png" alt="MisoPretty Seeds tree peony seed packet">
+    <img class="seed-hero__bloom" src="images/seed-packet.png" alt="MisoPretty Seeds hand-designed seed packet">
+    <aside class="seed-hero__note"><strong>Small batches</strong>germination-tested, packed with love</aside>
+    <div class="seed-hero__bottom">
+      <div class="seed-categories">
+        <span class="seed-chip">Sunflowers</span>
+        <span class="seed-chip">Cosmos</span>
+        <span class="seed-chip">Poppies</span>
+        <span class="seed-chip">Lavender</span>
+        <span class="seed-chip">Nasturtium</span>
+      </div>
+      <div class="seed-feature-card">
+        <div class="seed-feature-card__copy">
+          <h3>New varieties dropping soon</h3>
+          <p>DM for first dibs on the next small batch.</p>
+        </div>
+        <img class="seed-feature-card__image" src="images/seed-packet.png" alt="New variety coming soon">
+      </div>
     </div>
-    <div class="hero-cap">Packed by hand</div>
-  </div>
-</header>
+  </section>
 
-<div class="strip">
-  <div class="wrap">
-    <span><b>✿</b> Small-batch</span><span><b>✿</b> Germination-tested</span><span><b>✿</b> Packed with love</span>
-  </div>
-</div>
-
-<section id="shop">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker">The collection</div>
-      <h2>Shop our seeds</h2>
+  <section class="seed-section" id="shop">
+    <div class="seed-section__heading">
+      <h2>Shop the seeds</h2>
       <p>Small-batch flower seeds, collected by hand and packed with love. Choose your favorites below.</p>
     </div>
+    <div class="seed-product-grid">
 
-    <div class="grid">
-
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Common Sunflower seeds"></div>
-        <div class="body">
-          <h3>Common Sunflower</h3>
-          <p class="desc">Tall, classic yellow blooms. Easy to grow.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:0ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Common Sunflower seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Common Sunflower</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Common Sunflower via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Tall, classic yellow blooms. Easy to grow.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Cosmos seeds"></div>
-        <div class="body">
-          <h3>Cosmos</h3>
-          <p class="desc">Delicate flowers that bloom all summer long.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:80ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Cosmos seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Cosmos</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Cosmos via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Delicate flowers that bloom all summer long.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Mammoth Sunflower seeds"></div>
-        <div class="body">
-          <h3>Mammoth Sunflower</h3>
-          <p class="desc">Grows up to 10 feet tall. A real garden statement.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:160ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Mammoth Sunflower seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Mammoth Sunflower</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Mammoth Sunflower via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Grows up to 10 feet tall. A real garden statement.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Nasturtium seeds"></div>
-        <div class="body">
-          <h3>Nasturtium</h3>
-          <p class="desc">Bright, edible flowers. Very easy to grow.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:240ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Nasturtium seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Nasturtium</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Nasturtium via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Bright, edible flowers. Very easy to grow.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Poppy seeds"></div>
-        <div class="body">
-          <h3>Poppy</h3>
-          <p class="desc">Beautiful papery blooms. Self-seeds for next year.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:320ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Poppy seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Poppy</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Poppy via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Beautiful papery blooms. Self-seeds for next year.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Lavender seeds"></div>
-        <div class="body">
-          <h3>Lavender</h3>
-          <p class="desc">Fragrant purple blooms. Loved by bees.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:400ms">
+        <div class="seed-product__visual"><img src="images/seed-packet.png" alt="Lavender seeds"></div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Lavender</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Order Lavender via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">Fragrant purple blooms. Loved by bees.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Flower seeds"></div>
-        <div class="body">
-          <div class="note">✿ New variety dropping soon ✿</div>
-          <h3>Flower</h3>
-          <p class="desc">New variety coming soon. DM for first dibs.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:480ms">
+        <div class="seed-product__visual">
+          <span class="seed-product__badge">Coming soon</span>
+          <img src="images/seed-packet.png" alt="New flower variety coming soon">
         </div>
-      </div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Flower</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Ask about the new variety via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">New variety coming soon. DM for first dibs.</p>
+        </div>
+      </article>
 
-      <div class="card">
-        <div class="ph"><img src="images/seed-packet.png" alt="Flower seeds"></div>
-        <div class="body">
-          <div class="note">✿ New variety dropping soon ✿</div>
-          <h3>Flower</h3>
-          <p class="desc">New variety coming soon. DM for first dibs.</p>
-          <div class="price">$4.99</div>
-          <a class="btn small" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Order via DM</a>
+      <article class="seed-product" style="--seed-delay:560ms">
+        <div class="seed-product__visual">
+          <span class="seed-product__badge">Coming soon</span>
+          <img src="images/seed-packet.png" alt="New flower variety coming soon">
         </div>
-      </div>
+        <div class="seed-product__details">
+          <h3 class="seed-product__name">Flower</h3>
+          <a class="seed-product__add" href="https://x.com/igotglitteronme" target="_blank" rel="noopener" aria-label="Ask about the new variety via DM">+</a>
+          <p class="seed-product__price">$4.99</p>
+          <p class="seed-product__meta">New variety coming soon. DM for first dibs.</p>
+        </div>
+      </article>
 
     </div>
+    <p class="seed-scarcity"><strong>Small batches only</strong> — when a variety sells out, it's gone until next season.</p>
+  </section>
 
-    <div class="scarcity-wrap">
-      <p class="scarcity"><b>Small batches only</b> — when a variety sells out, it's gone until next season.</p>
-    </div>
-  </div>
-</section>
-
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker">Easy as planting</div>
+  <section class="seed-section" id="how">
+    <div class="seed-section__heading">
       <h2>How ordering works</h2>
       <p>No carts, no checkout maze — just you, me, and the flowers. Here's the whole thing:</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
+    <ol class="seed-steps">
+      <li>
+        <span class="seed-steps__num">1</span>
         <h3>Pick your seeds</h3>
         <p>Browse the collection above and choose the varieties your garden is dreaming of.</p>
-      </div>
-      <div class="step">
-        <div class="num">2</div>
+      </li>
+      <li>
+        <span class="seed-steps__num">2</span>
         <h3>DM me on X</h3>
         <p>Send a message to <a href="https://x.com/igotglitteronme" target="_blank" rel="noopener">@igotglitteronme</a> with the varieties you want. I reply personally — usually fast!</p>
-      </div>
-      <div class="step">
-        <div class="num">3</div>
+      </li>
+      <li>
+        <span class="seed-steps__num">3</span>
         <h3>Pay your way</h3>
         <p>I'll send you my payment link in the DM — Cash App, Venmo, Zelle, X or PayPal, whichever you like.</p>
-      </div>
-      <div class="step">
-        <div class="num">4</div>
+      </li>
+      <li>
+        <span class="seed-steps__num">4</span>
         <h3>Seeds ship to you</h3>
         <p>Your pretty packets go in the mail, and before you know it you'll have blooms of your very own.</p>
+      </li>
+    </ol>
+    <p class="seed-center"><a class="seed-button" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Start your order — DM me <span class="seed-button__arrow">→</span></a></p>
+  </section>
+
+  <section class="seed-section" id="about">
+    <div class="seed-about">
+      <div><img src="images/seed-packet.png" alt="Hand-designed MisoPretty Seeds packet"></div>
+      <div>
+        <p class="seed-eyebrow">About</p>
+        <h2>Grown with glitter</h2>
+        <p>Hi, I'm the garden girl behind MisoPretty Seeds. I grow flowers in a small garden in California's Central Valley. Each variety in the shop is one I plant in my own garden: <strong>beautiful, charming, and genuinely joyful to grow</strong>. Small batches, germination-tested, and packed with love before they head to your mailbox.</p>
+        <p>Whether this is your first seed ever or your five-hundredth, I'm so glad you're here. Let's grow something beautiful together.</p>
+        <p class="seed-sig">— your garden girl</p>
       </div>
     </div>
-    <div class="how-cta">
-      <a class="btn" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">Start your order — DM me</a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="about" id="about">
-  <div class="wrap">
-    <div>
-      <img src="images/seed-packet.png" alt="">
-    </div>
-    <div>
-      <h2>Grown with <em>glitter</em></h2>
-      <p>Hi, I'm the garden girl behind MisoPretty Seeds. I grow flowers in a small garden in California's Central Valley.</p>
-      <p>Each variety in the shop is one I plant in my own garden: beautiful, charming, and genuinely joyful to grow. Small batches, germination-tested, and packed with love before they head to your mailbox.</p>
-      <p>Whether this is your first seed ever or your five-hundredth, I'm so glad you're here. Let's grow something beautiful together.</p>
-      <div class="sig">— your garden girl </div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="kicker">Good to know</div>
+  <section class="seed-section" id="faq">
+    <div class="seed-section__heading">
       <h2>Questions, answered</h2>
+      <p>Good to know before you order.</p>
     </div>
-    <div class="faq">
+    <div class="seed-faq">
       <details>
         <summary>How do I pay for my seeds?</summary>
-        <p>Right in our DM conversation! After you message me on X, I'll send you my payment link — Cash App, Venmo, Zelle, or PayPal, your choice. Quick, simple, no accounts to create.</p>
+        <p>Right in our DM conversation! After you message me on X, I'll send you my payment link — Cash App, Venmo, Zelle, X or PayPal, your choice. Quick, simple, no accounts to create.</p>
       </details>
       <details>
         <summary>When will my seeds ship?</summary>
@@ -367,25 +299,27 @@
         <p>Yes! DM me and I'll put you first in line for the next batch. Small-batch means limited, but it also means I restock with care.</p>
       </details>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="final">
-  <div class="wrap">
-    <h2>Ready to <em>grow?</em></h2>
+  <section class="seed-final">
+    <h2>Ready to grow?</h2>
     <p>Pick your seeds above and DM me to place your order.</p>
-    <a class="btn" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM @igotglitteronme to order</a>
-  </div>
-</section>
+    <a class="seed-button" href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM @igotglitteronme to order</a>
+  </section>
 
-<footer id="contact">
-  <div class="wrap">
-    <div class="flogo">MisoPretty Seeds</div>
-    <p>Heirloom seeds, pretty packets — packed with love in California.</p>
-    <p>Questions? <a href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM @igotglitteronme on X</a> · <a href="mailto:hello@misoprettyseeds.com">hello@misoprettyseeds.com</a></p>
-    <p class="fine">© 2026 MisoPretty Seeds · All rights reserved</p>
-  </div>
-</footer>
+  <footer class="seed-footer" id="contact">
+    <div>
+      <strong>MisoPretty Seeds</strong>
+      <p>Heirloom seeds, pretty flowers — packed with love in California.</p>
+    </div>
+    <div class="seed-footer__links">
+      <a href="https://x.com/igotglitteronme" target="_blank" rel="noopener">DM on X</a>
+      <a href="mailto:hello@misoprettyseeds.com">hello@misoprettyseeds.com</a>
+    </div>
+  </footer>
+  <p class="seed-fine">© 2026 MisoPretty Seeds · All rights reserved</p>
 
+</div>
+</div>
 </body>
 </html>
