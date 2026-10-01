@@ -92,6 +92,12 @@
 </style>
 </head>
 <body>
+<noscript><style>.seed-intro{display:none!important}</style></noscript>
+<div class="seed-intro" id="seedIntro" role="button" tabindex="0" aria-label="Enter the shop">
+  <div class="seed-intro__door seed-intro__door--left"></div>
+  <div class="seed-intro__door seed-intro__door--right"></div>
+  <span class="seed-intro__enter">Enter</span>
+</div>
 <div class="seed-store">
 <div class="seed-frame">
 
@@ -320,5 +326,26 @@
 
 </div>
 </div>
+<script>
+(function () {
+  var intro = document.getElementById('seedIntro');
+  if (!intro) return;
+  document.body.style.overflow = 'hidden';
+  var done = false;
+  function open() {
+    if (done) return;
+    done = true;
+    intro.classList.add('seed-intro--open');
+    setTimeout(function () {
+      intro.classList.add('seed-intro--gone');
+      document.body.style.overflow = '';
+    }, 1500);
+  }
+  intro.addEventListener('click', open);
+  intro.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+  });
+})();
+</script>
 </body>
 </html>

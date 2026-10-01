@@ -1078,3 +1078,57 @@ img {
     transition-duration: 0.01ms !important;
   }
 }
+/* ---- Intro door ---- */
+.seed-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  perspective: 1400px;
+  cursor: pointer;
+  overflow: hidden;
+  background: #0d1b12;
+}
+.seed-intro__door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50.5%;
+  background-image: url("images/page-garden.jpg");
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  transition: transform 1.4s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.seed-intro__door--left {
+  left: 0;
+  background-position: left center;
+  transform-origin: left center;
+}
+.seed-intro__door--right {
+  right: 0;
+  background-position: right center;
+  transform-origin: right center;
+}
+.seed-intro__enter {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  font-family: var(--seed-display);
+  font-size: clamp(52px, 11vw, 128px);
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 3px 34px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.45s ease;
+  user-select: none;
+}
+.seed-intro--open .seed-intro__enter { opacity: 0; }
+.seed-intro--open .seed-intro__door--left { transform: rotateY(-104deg); }
+.seed-intro--open .seed-intro__door--right { transform: rotateY(104deg); }
+.seed-intro--gone { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .seed-intro__door { transition: opacity 0.4s ease; }
+  .seed-intro--open .seed-intro__door { opacity: 0; transform: none; }
+}
