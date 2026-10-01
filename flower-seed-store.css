@@ -1163,3 +1163,46 @@ img {
   .seed-intro__door { transition: opacity 0.4s ease; }
   .seed-intro--open .seed-intro__door { opacity: 0; transform: none; }
 }
+
+/* ---- 3D & motion layer ---- */
+#seedWebgl {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.seed-hero__headline,
+.seed-hero__copy {
+  will-change: translate;
+}
+.seed-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+.seed-reveal.in {
+  opacity: 1;
+  transform: none;
+}
+.seed-product-grid {
+  perspective: 1400px;
+}
+.seed-product {
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out;
+  will-change: transform;
+}
+.seed-product__visual img {
+  transform: translateZ(30px);
+}
+.seed-button {
+  transition: transform 0.25s cubic-bezier(0.2, 0.75, 0.25, 1), box-shadow 0.25s ease;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .seed-reveal { opacity: 1; transform: none; transition: none; }
+  .seed-product, .seed-button { transition: none; }
+  #seedWebgl { display: none; }
+}

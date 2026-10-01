@@ -115,6 +115,7 @@
   </header>
 
   <section class="seed-hero" id="top">
+    <canvas id="seedWebgl" aria-hidden="true"></canvas>
     <h1 class="seed-hero__headline"><span>Flower</span><span>Seeds</span></h1>
     <div class="seed-hero__copy">
       <p class="seed-eyebrow">Small-batch flower seeds</p>
@@ -326,6 +327,8 @@
 
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
+<script src="seed-3d.js"></script>
 <script>
 (function () {
   var intro = document.getElementById('seedIntro');
