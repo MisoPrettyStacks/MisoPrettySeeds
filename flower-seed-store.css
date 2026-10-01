@@ -15,6 +15,7 @@
   --seed-shadow: 0 24px 70px rgba(10, 21, 10, 0.22);
   --seed-display: "Playfair Display", Georgia, serif;
   --seed-body: "DM Sans", Arial, sans-serif;
+  --seed-garden-image: url("images/hero-garden.jpg");
 }
 
 * {
@@ -395,8 +396,8 @@ img {
   z-index: 3;
   top: 18%;
   right: 17%;
-  width: clamp(150px, 24vw, 340px);
-  aspect-ratio: 0.695;
+  width: clamp(80px, 12vw, 170px);
+  aspect-ratio: 0.693;
   object-fit: cover;
   object-position: center;
   filter: drop-shadow(0 36px 32px rgba(5, 13, 6, 0.34));
@@ -859,7 +860,7 @@ img {
 
   .seed-hero__bloom {
     right: 9%;
-    width: 30vw;
+    width: 15vw;
   }
 
   .seed-product-grid {
@@ -951,8 +952,8 @@ img {
   .seed-hero__bloom {
     top: 22%;
     right: -5%;
-    width: 48vw;
-    max-width: 250px;
+    width: 24vw;
+    max-width: 125px;
     opacity: 0.95;
   }
 
