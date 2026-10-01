@@ -395,7 +395,7 @@ img {
   z-index: 3;
   top: 18%;
   right: 17%;
-  width: clamp(210px, 35vw, 500px);
+  width: clamp(150px, 24vw, 340px);
   aspect-ratio: 0.8;
   object-fit: cover;
   object-position: center;
@@ -859,7 +859,7 @@ img {
 
   .seed-hero__bloom {
     right: 9%;
-    width: 42vw;
+    width: 30vw;
   }
 
   .seed-product-grid {
@@ -951,8 +951,8 @@ img {
   .seed-hero__bloom {
     top: 22%;
     right: -5%;
-    width: 63vw;
-    max-width: 330px;
+    width: 48vw;
+    max-width: 250px;
     opacity: 0.95;
   }
 
