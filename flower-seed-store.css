@@ -31,10 +31,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    linear-gradient(rgba(10, 20, 10, 0.42), rgba(10, 20, 10, 0.42)),
-    url("images/page-leaves.jpg") center / cover no-repeat fixed,
-    var(--seed-forest);
+  background: #fff;
   color: var(--seed-ink);
   font-family: var(--seed-body);
   -webkit-font-smoothing: antialiased;
@@ -77,26 +74,7 @@ img {
 
 .seed-store::before,
 .seed-store::after {
-  position: fixed;
-  z-index: -1;
-  pointer-events: none;
-  content: "";
-}
-
-.seed-store::before {
-  inset: 0;
-  opacity: 0.28;
-  background:
-    radial-gradient(ellipse at 12% 42%, #718a58 0 3%, transparent 3.4%),
-    radial-gradient(ellipse at 16% 39%, #49683a 0 4%, transparent 4.4%),
-    radial-gradient(ellipse at 90% 17%, #78905d 0 3%, transparent 3.4%),
-    radial-gradient(ellipse at 86% 21%, #48653c 0 4%, transparent 4.4%);
-  filter: blur(1px);
-}
-
-.seed-store::after {
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 34%, rgba(5, 13, 5, 0.44) 100%);
+  display: none;
 }
 
 .seed-frame {
