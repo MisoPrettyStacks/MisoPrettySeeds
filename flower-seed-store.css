@@ -272,7 +272,7 @@ img {
 .seed-hero__headline {
   position: absolute;
   z-index: 1;
-  top: 50%;
+  top: 47%;
   right: 4%;
   left: 4%;
   translate: 0 -50%;
@@ -852,7 +852,7 @@ img {
   }
 
   .seed-hero__headline {
-    top: 50%;
+    top: 47%;
     translate: 0 -50%;
     font-size: clamp(72px, 17vw, 200px);
   }
@@ -934,7 +934,7 @@ img {
   }
 
   .seed-hero__headline {
-    top: 50%;
+    top: 47%;
     right: 2%;
     left: 2%;
     translate: 0 -50%;
