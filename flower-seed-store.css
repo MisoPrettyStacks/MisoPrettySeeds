@@ -31,7 +31,10 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background: #fff;
+  background:
+    linear-gradient(rgba(10, 20, 10, 0.3), rgba(10, 20, 10, 0.3)),
+    url("images/hero-garden.jpg") center / cover no-repeat fixed,
+    #182619;
   color: var(--seed-ink);
   font-family: var(--seed-body);
   -webkit-font-smoothing: antialiased;
@@ -215,10 +218,11 @@ img {
 
 .seed-hero {
   position: relative;
-  min-height: clamp(560px, 68vw, 750px);
-  margin-top: 16px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-top: 0;
   overflow: hidden;
-  border-radius: clamp(18px, 3vw, 34px);
+  border-radius: 0;
   background:
     linear-gradient(90deg, rgba(15, 31, 17, 0.82), rgba(21, 42, 21, 0.28) 58%, rgba(14, 31, 17, 0.26)),
     var(--seed-garden-image, linear-gradient(140deg, #365235, #1d321e 53%, #0d1b12));
@@ -226,6 +230,21 @@ img {
   background-size: cover;
   color: var(--seed-paper);
   perspective: 1200px;
+}
+
+.seed-store {
+  padding-top: 0;
+}
+
+.seed-panel {
+  position: relative;
+  z-index: 2;
+  width: min(1400px, 100%);
+  margin: -72px auto 0;
+  padding: clamp(28px, 4vw, 60px) clamp(18px, 3vw, 44px);
+  border-radius: clamp(24px, 4vw, 44px);
+  background: #fff;
+  box-shadow: 0 30px 80px rgba(9, 20, 10, 0.35);
 }
 
 .seed-hero::before,
@@ -829,7 +848,8 @@ img {
   }
 
   .seed-hero {
-    min-height: 680px;
+    min-height: 100vh;
+    min-height: 100svh;
   }
 
   .seed-hero__headline {
@@ -856,7 +876,7 @@ img {
 
 @media (max-width: 620px) {
   .seed-store {
-    padding: 10px;
+    padding: 0 10px 10px;
   }
 
   .seed-frame {
@@ -898,8 +918,15 @@ img {
   }
 
   .seed-hero {
-    min-height: 690px;
-    margin-top: 13px;
+    min-height: 100vh;
+    min-height: 100svh;
+    margin-top: 0;
+  }
+
+  .seed-panel {
+    margin-top: -48px;
+    padding: 30px 20px;
+    border-radius: 26px;
   }
 
   .seed-hero__headline {
