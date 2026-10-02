@@ -221,6 +221,7 @@ img {
   overflow: hidden;
   border-radius: 0;
   background:
+    linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 22%),
     linear-gradient(90deg, rgba(15, 31, 17, 0.82), rgba(21, 42, 21, 0.28) 58%, rgba(14, 31, 17, 0.26)),
     var(--seed-garden-image, linear-gradient(140deg, #365235, #1d321e 53%, #0d1b12));
   background-position: center;
@@ -265,7 +266,7 @@ img {
 .seed-hero::after {
   inset: auto 0 0;
   height: 45%;
-  background: linear-gradient(0deg, rgba(9, 23, 12, 0.7), transparent);
+  background: linear-gradient(0deg, transparent 0%, rgba(9, 23, 12, 0.65) 55%, transparent 100%);
 }
 
 .seed-hero__headline {
@@ -918,6 +919,10 @@ img {
     min-height: 100vh;
     min-height: 100svh;
     margin-top: 0;
+    background:
+      linear-gradient(0deg, #fff 0%, rgba(255, 255, 255, 0) 10%),
+      linear-gradient(90deg, rgba(15, 31, 17, 0.82), rgba(21, 42, 21, 0.28) 58%, rgba(14, 31, 17, 0.26)),
+      var(--seed-garden-image, linear-gradient(140deg, #365235, #1d321e 53%, #0d1b12));
   }
 
   .seed-panel {
