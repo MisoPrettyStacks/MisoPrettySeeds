@@ -272,13 +272,14 @@ img {
 .seed-hero__headline {
   position: absolute;
   z-index: 1;
-  top: clamp(25px, 4vw, 58px);
+  top: 50%;
   right: 4%;
   left: 4%;
+  translate: 0 -50%;
   margin: 0;
   color: rgba(255, 253, 247, 0.96);
   font-family: var(--seed-display);
-  font-size: clamp(62px, 13.2vw, 188px);
+  font-size: clamp(84px, 18vw, 320px);
   font-weight: 500;
   letter-spacing: -0.075em;
   line-height: 0.82;
@@ -851,8 +852,9 @@ img {
   }
 
   .seed-hero__headline {
-    top: 46px;
-    font-size: clamp(70px, 14vw, 130px);
+    top: 50%;
+    translate: 0 -50%;
+    font-size: clamp(72px, 17vw, 200px);
   }
 
   .seed-hero__copy {
@@ -932,10 +934,11 @@ img {
   }
 
   .seed-hero__headline {
-    top: 34px;
+    top: 50%;
     right: 2%;
     left: 2%;
-    font-size: clamp(57px, 17vw, 94px);
+    translate: 0 -50%;
+    font-size: clamp(64px, 21vw, 140px);
     line-height: 0.86;
   }
 
